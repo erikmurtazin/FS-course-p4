@@ -1,0 +1,26 @@
+{
+  "name": "fs-course-p4",
+  "version": "1.0.0",
+  "description": "blog list",
+  "homepage": "https://github.com/erikmurtazin/FS-course-p4#readme",
+  "bugs": {
+    "url": "https://github.com/erikmurtazin/FS-course-p4/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/erikmurtazin/FS-course-p4.git"
+  },
+  "license": "MIT",
+  "author": "Erik Murtazin",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --watch index.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.14.1"
+  }
+}
