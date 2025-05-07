@@ -8,9 +8,15 @@ const app = express();
 mongoose.connect(config.MONGODB_URI);
 
 app.use(express.json());
-app.use('/api/blogs', blogsRouter);
 app.use(middleware.requestLogger);
+app.use('/api/blogs', blogsRouter);
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
+
+process.on('SIGINT', async () => {
+  await mongoose.connection.close();
+  console.log('MongoDB connection closed');
+  process.exit(0);
+});
 
 module.exports = app;
