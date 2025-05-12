@@ -6,6 +6,7 @@ const helper = require('./test_helper');
 const api = supertest(app);
 
 beforeEach(async () => {
+  await helper.deleteBlogs();
   await helper.insertBlogs();
 });
 
@@ -102,6 +103,5 @@ test('deleting a single blog', async () => {
 });
 
 after(async () => {
-  await helper.deleteBlogs();
   await mongoose.connection.close();
 });

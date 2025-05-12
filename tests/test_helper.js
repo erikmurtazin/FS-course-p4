@@ -58,16 +58,15 @@ const insertBlogs = async () => {
       const blog = new Blog(b);
       await blog.save();
     }
-    console.log('Blogs were inserted');
   } catch (exception) {
     console.error(exception);
     throw exception;
   }
 };
+
 const deleteBlogs = async () => {
   try {
     await Blog.deleteMany({});
-    console.log('Blogs were deleted');
   } catch (exception) {
     console.error(exception);
     throw exception;
