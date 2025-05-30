@@ -34,6 +34,20 @@ blogsRouter.post('/', async (request, response, next) => {
     next(error);
   }
 });
+blogsRouter.put('/:id', async (request, response, next) => {
+  try {
+    const id = request.params.id;
+    const blog = await Blog.findById(id);
+    if (!blog) {
+      return response.status(400).json({ error: 'Bad request' });
+    }
+    const updatedBlog = { likes: blog.likes + 1 };
+    const result = await Blog.findByIdAndUpdate(id, updatedBlog, { new: true });
+    response.status(201).json(result);
+  } catch (error) {
+    next(error);
+  }
+});
 blogsRouter.get('/:id', async (request, response, next) => {
   try {
     const id = request.params.id;

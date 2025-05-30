@@ -1,4 +1,5 @@
 const config = require('./utils/config.js');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const loginRouter = require('./controllers/login');
 const blogsRouter = require('./controllers/blogs');
@@ -17,6 +18,12 @@ async function connectToDatabase() {
 }
 
 connectToDatabase();
+app.use(
+  cors({
+    origin: 'http://localhost:5173',
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(middleware.requestLogger);
 app.use(middleware.tokenExtractor);
