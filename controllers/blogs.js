@@ -25,9 +25,12 @@ blogsRouter.post('/', async (request, response, next) => {
       return response.status(400).json({ error: 'Bad request' });
     }
     const user = request.user;
-    const blog = new Blog({ title, author, url, likes, user: user._id });
+    if (!user) {
+      return response.status(500).json({ error: 'Internal Server Error' });
+    }
+    const blog = new Blog({ title, author, url, likes, user: user.id });
     const savedBlog = await blog.save();
-    user.blogs = user.blogs.concat(savedBlog._id);
+    user.blogs = user.blogs.concat(savedBlog.id);
     await user.save();
     response.status(201).json(savedBlog);
   } catch (error) {

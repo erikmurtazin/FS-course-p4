@@ -27,6 +27,15 @@ blogSchema.set('toJSON', {
     returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;
     delete returnedObject.__v;
+    if (
+      returnedObject.user &&
+      typeof returnedObject.user === 'object' &&
+      returnedObject.user._id
+    ) {
+      returnedObject.user = {
+        id: returnedObject.user._id.toString(),
+      };
+    }
   },
 });
 const Blog = mongoose.model('Blog', blogSchema);
